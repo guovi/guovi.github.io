@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://localhost:1314/sitemap.xml
+Sitemap: https://guovi.github.io/sitemap.xml
