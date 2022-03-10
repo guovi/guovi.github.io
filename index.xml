@@ -6,7 +6,7 @@
     <description>Recent content on 东云研究所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate><atom:link href="https://guovi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Mar 2022 23:54:00 +0800</lastBuildDate><atom:link href="https://guovi.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Theme preview</title>
       <link>https://guovi.github.io/post/even-preview/</link>
@@ -25,6 +25,15 @@
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>MyFirstBlog</title>
+      <link>https://guovi.github.io/post/myfirstblog/</link>
+      <pubDate>Thu, 10 Mar 2022 23:54:00 +0800</pubDate>
+      
+      <guid>https://guovi.github.io/post/myfirstblog/</guid>
+      <description>Hello Hugo 第一个博客啦啦啦</description>
     </item>
     
     <item>

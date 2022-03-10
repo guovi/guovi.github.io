@@ -16,6 +16,27 @@
   </url>
   
   <url>
+    <loc>https://guovi.github.io/post/myfirstblog/</loc>
+    <lastmod>2022-03-10T23:54:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://guovi.github.io/post/</loc>
+    <lastmod>2022-03-10T23:54:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://guovi.github.io/</loc>
+    <lastmod>2022-03-10T23:54:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://guovi.github.io/categories/</loc>
     <lastmod>2018-11-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -32,13 +53,6 @@
   <url>
     <loc>https://guovi.github.io/categories/category-3/</loc>
     <lastmod>2018-07-10T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://guovi.github.io/post/</loc>
-    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -74,13 +88,6 @@
   <url>
     <loc>https://guovi.github.io/categories/theme-preview/</loc>
     <lastmod>2018-07-10T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://guovi.github.io/</loc>
-    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

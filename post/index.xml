@@ -6,7 +6,7 @@
     <description>Recent content in Posts on 东云研究所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate><atom:link href="https://guovi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Mar 2022 23:54:00 +0800</lastBuildDate><atom:link href="https://guovi.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Theme preview</title>
       <link>https://guovi.github.io/post/even-preview/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://guovi.github.io/post/even-preview/</guid>
       <description>Based on MarkdownPreview test.md. Markdown 1 2 3 4 5 6 7 8 # H1 ## H2 ### H3 #### H4 ##### H5 ###### H6 ### Duplicate Header ### Duplicate Header H1 H2 H3 H4 H5 H6 Duplicate Header Duplicate Header Paragraphs 1 2 3 4 This is a paragraph. I am still part of the paragraph. New paragraph. This is a paragraph. I am still part of the paragraph.</description>
+    </item>
+    
+    <item>
+      <title>MyFirstBlog</title>
+      <link>https://guovi.github.io/post/myfirstblog/</link>
+      <pubDate>Thu, 10 Mar 2022 23:54:00 +0800</pubDate>
+      
+      <guid>https://guovi.github.io/post/myfirstblog/</guid>
+      <description>Hello Hugo 第一个博客啦啦啦</description>
     </item>
     
     <item>
