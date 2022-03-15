@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>条款01 理解模板型别推导 - 东云研究所</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="东云" /><meta name="description" content="简述 类型推导两套规则：auto和decltype 函数模板如： 1 2 template&amp;lt;typename T&amp;gt; void f(ParamType param); 一次调用如： 1 f(expr); 编译器会通过expr推导T和ParamType的类" /><meta name="keywords" content="Hugo, theme, code" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.93.1 with theme even" />
+
+
+<link rel="canonical" href="https://guovi.github.io/post/%E6%9D%A1%E6%AC%BE01-%E7%90%86%E8%A7%A3%E6%A8%A1%E6%9D%BF%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="条款01 理解模板型别推导" />
+<meta property="og:description" content="简述 类型推导两套规则：auto和decltype 函数模板如： 1 2 template&lt;typename T&gt; void f(ParamType param); 一次调用如： 1 f(expr); 编译器会通过expr推导T和ParamType的类" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://guovi.github.io/post/%E6%9D%A1%E6%AC%BE01-%E7%90%86%E8%A7%A3%E6%A8%A1%E6%9D%BF%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-03-13T22:48:22+08:00" />
+<meta property="article:modified_time" content="2022-03-13T22:48:22+08:00" />
+
+<meta itemprop="name" content="条款01 理解模板型别推导">
+<meta itemprop="description" content="简述 类型推导两套规则：auto和decltype 函数模板如： 1 2 template&lt;typename T&gt; void f(ParamType param); 一次调用如： 1 f(expr); 编译器会通过expr推导T和ParamType的类"><meta itemprop="datePublished" content="2022-03-13T22:48:22+08:00" />
+<meta itemprop="dateModified" content="2022-03-13T22:48:22+08:00" />
+<meta itemprop="wordCount" content="1419">
+<meta itemprop="keywords" content="读书笔记,C&#43;&#43;,类型推导," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="条款01 理解模板型别推导"/>
+<meta name="twitter:description" content="简述 类型推导两套规则：auto和decltype 函数模板如： 1 2 template&lt;typename T&gt; void f(ParamType param); 一次调用如： 1 f(expr); 编译器会通过expr推导T和ParamType的类"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">东云研究所</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">东云研究所</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">条款01 理解模板型别推导</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-03-13 </span>
+        <div class="post-category">
+            <a href="/categories/effective-modern-c&#43;&#43;/"> Effective Modern C&#43;&#43; </a>
+            </div>
+          <span class="more-meta"> 约 1419 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简述">简述</a></li>
+        <li><a href="#情况-1paramtype-是指针或引用但不是万能引用">情况 1：ParamType 是指针或引用，但不是万能引用</a></li>
+        <li><a href="#情况-2paramtype-是个万能引用">情况 2：ParamType 是个万能引用</a></li>
+        <li><a href="#情况-3paramtype-既非指针也非引用">情况 3：ParamType 既非指针也非引用</a></li>
+        <li><a href="#特殊情况数组实参">特殊情况：数组实参</a></li>
+        <li><a href="#特殊情况函数实参">特殊情况：函数实参</a></li>
+        <li><a href="#要点速记">要点速记</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="简述">简述</h2>
+<p>类型推导两套规则：auto和decltype
+函数模板如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">ParamType</span> <span class="n">param</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一次调用如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">expr</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编译器会通过expr推导T和ParamType的类型，这两个类型常常不一样，因为ParamType一般会包含一些修饰，如const或引用符号。如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// ParamType 是 const T&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// 以一个int调用f
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>T 的型别推导结果，不仅仅依赖 expr 的型别，还依赖 ParamType 的形式。具体要分 种情况讨论：</p>
+<ul>
+<li>ParamType 是指针或者引用，但不是万能引用。</li>
+<li>ParamType 是一个万能引用。</li>
+<li>ParamType 既非指针也非引用。</li>
+</ul>
+<p> </p>
+<h2 id="情况-1paramtype-是指针或引用但不是万能引用">情况 1：ParamType 是指针或引用，但不是万能引用</h2>
+<p>这种情况下，类型推导规则是：</p>
+<ol>
+<li>如果 expr 是引用，先将引用部分忽略。</li>
+<li>对 expr 和 ParamType 的类型进行模式匹配来决定 T 的类型。</li>
+</ol>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// param 是个引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">39</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// T 的类型是 int，param 的类型是 int&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">cx</span><span class="p">);</span>    <span class="c1">// T 的类型是 const int，param 的类型是 const int&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">rx</span><span class="p">);</span>    <span class="c1">// T 的类型是 const int， param 的类型是 const int&amp;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于 cx 和 rx 的值都是 const，所以 T 的类型推导为 const int，从而形参的类型就成了 const int&amp;。也就是说，当人们向引用类型的形参传入 const 对象时，期望该对象保持其不可修改的属性，对象的常量性会成为T的类型推导结果的组成部分。</p>
+<p> </p>
+<h2 id="情况-2paramtype-是个万能引用">情况 2：ParamType 是个万能引用</h2>
+<ol>
+<li>如果 expr 是个左值，T 和 ParamType 都会推导韦左值引用。这是T被推导韦引用的唯一情形。</li>
+<li>如果 expr 是个右值，应用情况 1 的规则。</li>
+</ol>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// param 现在是个万能引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">39</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// x 是个左值，所以 T 是 int&amp;，param 也是 int&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">cx</span><span class="p">);</span>    <span class="c1">// cx 是个左值，所以 T 是 const int&amp;，param 也是 const int&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">rx</span><span class="p">);</span>    <span class="c1">// cx 是个左值，所以 T 是 const int&amp;，param 也是 const int&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="mi">39</span><span class="p">);</span>    <span class="c1">// 39 是个右值，所以 T 是 int，param 就是 int&amp;&amp;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h2 id="情况-3paramtype-既非指针也非引用">情况 3：ParamType 既非指针也非引用</h2>
+<p>也就是值传递，无论传入的是什么，param 都是它的一个副本。规则如下：</p>
+<ol>
+<li>如果 expr 是引用类型，忽略引用部分。</li>
+<li>如果 expr 还是 const 对象，也忽略。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// param 值传递
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">39</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// T 和 param 都是 int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">cx</span><span class="p">);</span>    <span class="c1">// T 和 param 都是 int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">rx</span><span class="p">);</span>    <span class="c1">// T 和 param 都是 int
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>即使 cx 和 rx 代表 const 值，param仍然不具有 const 类型。</p>
+<p> </p>
+<h2 id="特殊情况数组实参">特殊情况：数组实参</h2>
+<p>数组有别于指针类型，但很多时候数组会退化成指向其首元素的指针，也能够通过编译。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="n">name</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;hello world!&#34;</span><span class="p">;</span>    <span class="c1">// name 的类型是 const char[13]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span>  <span class="n">ptrToName</span> <span class="o">=</span> <span class="n">name</span>    <span class="c1">// 数组退化成指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 值传递
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>    <span class="c1">// T 和 param 的类型是什么？
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>首先，没有任何函数形参是数组类型，虽然</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">myFunc</span><span class="p">(</span><span class="kt">int</span> <span class="n">param</span><span class="p">[]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>是合法的。等价于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">myFunc</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">param</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>数组形参声明会按照指针形参那么处理，在 f 的调用中，形参 T 会被推导成 const char *；但是，能够将形参声明为数组的引用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 引用方式传递形参
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>    <span class="c1">// 向 f 传递一个数组
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里 T 的类型会被推导为实际的数组类型，包含数组尺寸，本例中 T 为 const char [13]，f 的形参类型被推导为 const char (&amp;)[13]。</p>
+<p> </p>
+<h2 id="特殊情况函数实参">特殊情况：函数实参</h2>
+<p>函数类型也会退化为函数指针，针对数组类型推导的一切讨论都适用于函数及其向函数指针的退化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">someFunc</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">double</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f1</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 值传递
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f2</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 引用传递
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">f1</span><span class="p">(</span><span class="n">someFunc</span><span class="p">);</span>    <span class="c1">// param 被推导为函数指针，类型是 void (*)(int, double)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">f2</span><span class="p">(</span><span class="n">someFunc</span><span class="p">);</span>    <span class="c1">// param 被推导为函数引用，类型是 void (&amp;)(int, double)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h2 id="要点速记">要点速记</h2>
+<ul>
+<li>引用类型的实参会被当做非引用类型来处理。</li>
+<li>万能引用形参进行推导时，左值实参会进行特殊处理。</li>
+<li>值传递的形参进行推导时，const 和 volatile 修饰被忽略。</li>
+<li>数组或函数类型的实参会退化成对应指针，除非它们的形参是一个引用。</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">东云</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-03-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+          <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+          <a href="/tags/%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC/">类型推导</a>
+          </div>
+      <nav class="post-nav">
+        
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://guovi.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>东云</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
