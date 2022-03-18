@@ -49,7 +49,7 @@
 <meta itemprop="name" content="条款01 理解模板型别推导">
 <meta itemprop="description" content="简述 类型推导两套规则：auto和decltype 函数模板如： 1 2 template&lt;typename T&gt; void f(ParamType param); 一次调用如： 1 f(expr); 编译器会通过expr推导T和ParamType的类"><meta itemprop="datePublished" content="2022-03-13T22:48:22+08:00" />
 <meta itemprop="dateModified" content="2022-03-13T22:48:22+08:00" />
-<meta itemprop="wordCount" content="1419">
+<meta itemprop="wordCount" content="1418">
 <meta itemprop="keywords" content="读书笔记,C&#43;&#43;,类型推导," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="条款01 理解模板型别推导"/>
 <meta name="twitter:description" content="简述 类型推导两套规则：auto和decltype 函数模板如： 1 2 template&lt;typename T&gt; void f(ParamType param); 一次调用如： 1 f(expr); 编译器会通过expr推导T和ParamType的类"/>
@@ -136,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/effective-modern-c&#43;&#43;/"> Effective Modern C&#43;&#43; </a>
             </div>
-          <span class="more-meta"> 约 1419 字 </span>
+          <span class="more-meta"> 约 1418 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
@@ -202,7 +202,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// 以一个int调用f
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>T 的型别推导结果，不仅仅依赖 expr 的型别，还依赖 ParamType 的形式。具体要分 种情况讨论：</p>
+</div><p>T 的型别推导结果，不仅仅依赖 expr 的型别，还依赖 ParamType 的形式。具体要分情况讨论：</p>
 <ul>
 <li>ParamType 是指针或者引用，但不是万能引用。</li>
 <li>ParamType 是一个万能引用。</li>
