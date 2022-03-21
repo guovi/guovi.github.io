@@ -6,7 +6,25 @@
     <description>Recent content in Effective Modern C&#43;&#43; on 东云研究所</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 13 Mar 2022 22:48:22 +0800</lastBuildDate><atom:link href="https://guovi.github.io/categories/effective-modern-c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Mar 2022 00:35:54 +0800</lastBuildDate><atom:link href="https://guovi.github.io/categories/effective-modern-c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>条款03 理解decltype</title>
+      <link>https://guovi.github.io/post/%E6%9D%A1%E6%AC%BE03-%E7%90%86%E8%A7%A3decltype/</link>
+      <pubDate>Sun, 20 Mar 2022 00:35:54 +0800</pubDate>
+      
+      <guid>https://guovi.github.io/post/%E6%9D%A1%E6%AC%BE03-%E7%90%86%E8%A7%A3decltype/</guid>
+      <description>简述 对于给定的名字或表达式，decltype 能告诉你该名字或表达式的类型。但是，偶尔的结果让人抓耳挠腮。 一般情形 与模板和 auto 的类型推导过程相反</description>
+    </item>
+    
+    <item>
+      <title>条款02 理解auto型别推导</title>
+      <link>https://guovi.github.io/post/%E6%9D%A1%E6%AC%BE02-%E7%90%86%E8%A7%A3auto%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/</link>
+      <pubDate>Fri, 18 Mar 2022 21:58:01 +0800</pubDate>
+      
+      <guid>https://guovi.github.io/post/%E6%9D%A1%E6%AC%BE02-%E7%90%86%E8%A7%A3auto%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/</guid>
+      <description>简述 除了一个例外，auto 类型推导就是模板类型推导。在条款 01 中，解释模板类型推导形如： 1 2 3 4 template&amp;lt;typename T&amp;gt; void f(ParamType param); f(expr); // 以某表达式调用 f 在 f 的调用语句中</description>
+    </item>
+    
     <item>
       <title>条款01 理解模板型别推导</title>
       <link>https://guovi.github.io/post/%E6%9D%A1%E6%AC%BE01-%E7%90%86%E8%A7%A3%E6%A8%A1%E6%9D%BF%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/</link>

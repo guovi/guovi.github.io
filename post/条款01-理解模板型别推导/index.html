@@ -237,7 +237,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>   
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// T 的类型是 int，param 的类型是 int&amp;
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>     <span class="c1">// T 的类型是 int，param 的类型是 int&amp;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">cx</span><span class="p">);</span>    <span class="c1">// T 的类型是 const int，param 的类型是 const int&amp;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">rx</span><span class="p">);</span>    <span class="c1">// T 的类型是 const int， param 的类型是 const int&amp;
 </span></span></span></code></pre></td></tr></table>
@@ -272,7 +272,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// x 是个左值，所以 T 是 int&amp;，param 也是 int&amp;
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>     <span class="c1">// x 是个左值，所以 T 是 int&amp;，param 也是 int&amp;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">cx</span><span class="p">);</span>    <span class="c1">// cx 是个左值，所以 T 是 const int&amp;，param 也是 const int&amp;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">rx</span><span class="p">);</span>    <span class="c1">// cx 是个左值，所以 T 是 const int&amp;，param 也是 const int&amp;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="mi">39</span><span class="p">);</span>    <span class="c1">// 39 是个右值，所以 T 是 int，param 就是 int&amp;&amp;
@@ -306,7 +306,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rx</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>    <span class="c1">// T 和 param 都是 int
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>     <span class="c1">// T 和 param 都是 int
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">cx</span><span class="p">);</span>    <span class="c1">// T 和 param 都是 int
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">rx</span><span class="p">);</span>    <span class="c1">// T 和 param 都是 int
 </span></span></span></code></pre></td></tr></table>
@@ -326,11 +326,11 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="n">name</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;hello world!&#34;</span><span class="p">;</span>    <span class="c1">// name 的类型是 const char[13]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span>  <span class="n">ptrToName</span> <span class="o">=</span> <span class="n">name</span>    <span class="c1">// 数组退化成指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span>  <span class="n">ptrToName</span> <span class="o">=</span> <span class="n">name</span>         <span class="c1">// 数组退化成指针
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 值传递
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>    <span class="c1">// T 和 param 的类型是什么？
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>            <span class="c1">// T 和 param 的类型是什么？
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先，没有任何函数形参是数组类型，虽然</p>
@@ -363,7 +363,7 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 引用方式传递形参
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>    <span class="c1">// 向 f 传递一个数组
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>             <span class="c1">// 向 f 传递一个数组
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里 T 的类型会被推导为实际的数组类型，包含数组尺寸，本例中 T 为 const char [13]，f 的形参类型被推导为 const char (&amp;)[13]。</p>
@@ -388,14 +388,14 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">someFunc</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">double</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f1</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 值传递
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f1</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">);</span>     <span class="c1">// 值传递
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f2</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">);</span>    <span class="c1">// 引用传递
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="n">f1</span><span class="p">(</span><span class="n">someFunc</span><span class="p">);</span>    <span class="c1">// param 被推导为函数指针，类型是 void (*)(int, double)
+</span></span><span class="line"><span class="cl"><span class="n">f1</span><span class="p">(</span><span class="n">someFunc</span><span class="p">);</span>         <span class="c1">// param 被推导为函数指针，类型是 void (*)(int, double)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="n">f2</span><span class="p">(</span><span class="n">someFunc</span><span class="p">);</span>    <span class="c1">// param 被推导为函数引用，类型是 void (&amp;)(int, double)
+</span></span><span class="line"><span class="cl"><span class="n">f2</span><span class="p">(</span><span class="n">someFunc</span><span class="p">);</span>         <span class="c1">// param 被推导为函数引用，类型是 void (&amp;)(int, double)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p> </p>
@@ -431,7 +431,11 @@
           <a href="/tags/%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC/">类型推导</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/%E6%9D%A1%E6%AC%BE02-%E7%90%86%E8%A7%A3auto%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">条款02 理解auto型别推导</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         
       </nav>
     </footer>
