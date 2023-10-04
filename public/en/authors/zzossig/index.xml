@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zzossig on Hugo Zzo Theme</title>
+    <link>http://example.org/en/authors/zzossig/</link>
+    <description>Recent content in zzossig on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 01 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/en/authors/zzossig/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Good Title</title>
+      <link>http://example.org/en/publication/article/article_any_folder_name_1/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/en/publication/article/article_any_folder_name_1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Donec vel ipsum vulputate, dapibus magna quis</title>
+      <link>http://example.org/en/publication/book/book_any_folder_name_1/</link>
+      <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/en/publication/book/book_any_folder_name_1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Book Review: Duis vulputate</title>
+      <link>http://example.org/en/publication/misc/misc_any_folder_name_1/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/en/publication/misc/misc_any_folder_name_1/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

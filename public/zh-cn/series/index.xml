@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Series on 东云研究所</title>
+    <link>http://example.org/zh-cn/series/</link>
+    <description>Recent content in Series on 东云研究所</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Wed, 04 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/zh-cn/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TEST</title>
+      <link>http://example.org/zh-cn/series/test/</link>
+      <pubDate>Wed, 04 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/zh-cn/series/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Theme Demo</title>
+      <link>http://example.org/zh-cn/series/theme-demo/</link>
+      <pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/zh-cn/series/theme-demo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

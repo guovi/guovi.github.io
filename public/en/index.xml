@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo Zzo Theme</title>
+    <link>http://example.org/en/</link>
+    <description>Recent content on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 05 Mar 2020 14:08:48 +0000</lastBuildDate><atom:link href="http://example.org/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Zzo Theme</title>
+      <link>http://example.org/en/showcase/hugo/hugo-theme-zzo/</link>
+      <pubDate>Sun, 19 Jan 2020 21:13:42 +0900</pubDate>
+      
+      <guid>http://example.org/en/showcase/hugo/hugo-theme-zzo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo zDoc Theme</title>
+      <link>http://example.org/en/showcase/hugo/hugo-theme-zdoc/</link>
+      <pubDate>Sun, 19 Jan 2020 21:13:42 +0900</pubDate>
+      
+      <guid>http://example.org/en/showcase/hugo/hugo-theme-zdoc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cartoon</title>
+      <link>http://example.org/en/gallery/cartoon/</link>
+      <pubDate>Thu, 31 Oct 2019 10:20:16 +0900</pubDate>
+      
+      <guid>http://example.org/en/gallery/cartoon/</guid>
+      <description>Sample images from Pixabay</description>
+    </item>
+    
+    <item>
+      <title>Photo</title>
+      <link>http://example.org/en/gallery/photo/</link>
+      <pubDate>Thu, 31 Oct 2019 10:20:16 +0900</pubDate>
+      
+      <guid>http://example.org/en/gallery/photo/</guid>
+      <description>Sample images from Pixabay</description>
+    </item>
+    
+    <item>
+      <title>Fourth</title>
+      <link>http://example.org/en/presentation/dir/fourth/</link>
+      <pubDate>Wed, 30 Oct 2019 20:48:10 +0900</pubDate>
+      
+      <guid>http://example.org/en/presentation/dir/fourth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Third</title>
+      <link>http://example.org/en/presentation/third/</link>
+      <pubDate>Wed, 30 Oct 2019 20:46:30 +0900</pubDate>
+      
+      <guid>http://example.org/en/presentation/third/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Second</title>
+      <link>http://example.org/en/presentation/second/</link>
+      <pubDate>Wed, 30 Oct 2019 20:45:24 +0900</pubDate>
+      
+      <guid>http://example.org/en/presentation/second/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>First</title>
+      <link>http://example.org/en/presentation/first/</link>
+      <pubDate>Wed, 30 Oct 2019 19:45:20 +0900</pubDate>
+      
+      <guid>http://example.org/en/presentation/first/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://example.org/en/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/en/about/</guid>
+      <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+Hugo makes use of a variety of open source projects including:
+https://github.com/russross/blackfriday https://github.</description>
+    </item>
+    
+    <item>
+      <title>Good Title</title>
+      <link>http://example.org/en/publication/article/article_any_folder_name_1/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/en/publication/article/article_any_folder_name_1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Donec vel ipsum vulputate, dapibus magna quis</title>
+      <link>http://example.org/en/publication/book/book_any_folder_name_1/</link>
+      <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/en/publication/book/book_any_folder_name_1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Book Review: Duis vulputate</title>
+      <link>http://example.org/en/publication/misc/misc_any_folder_name_1/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/en/publication/misc/misc_any_folder_name_1/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
